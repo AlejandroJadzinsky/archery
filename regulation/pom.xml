@@ -13,7 +13,7 @@
   </parent>
 
   <groupId>com.archery</groupId>
-  <artifactId>tournament</artifactId>
+  <artifactId>regulation</artifactId>
   <version>0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 

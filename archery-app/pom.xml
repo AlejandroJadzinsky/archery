@@ -4,8 +4,6 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
   http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-  <!-- The main application pom -->
-
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -27,13 +25,19 @@
 
     <dependency>
       <groupId>com.archery</groupId>
-      <artifactId>tournament</artifactId>
+      <artifactId>community</artifactId>
       <version>0.1-SNAPSHOT</version>
     </dependency>
 
     <dependency>
       <groupId>com.archery</groupId>
-      <artifactId>community</artifactId>
+      <artifactId>regulation</artifactId>
+      <version>0.1-SNAPSHOT</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.archery</groupId>
+      <artifactId>tournament</artifactId>
       <version>0.1-SNAPSHOT</version>
     </dependency>
     <!-- ++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -75,8 +79,5 @@
       </plugin>
     </plugins>
   </build>
-
-  <!-- vim: set ts=2 et sw=2 ai: -->
-
 </project>
 

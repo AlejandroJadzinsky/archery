@@ -1,5 +1,3 @@
-/* vim: set et ts=2 sw=2 cindent fo=qroca: */
-
 package com.archery.archeryapp;
 
 import org.springframework.context.annotation.Configuration;
@@ -7,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import com.k2.core.Application;
 
 import com.archery.Community;
+import com.archery.Regulation;
 import com.archery.Tournament;
 
 /** The Archeryapplication.
@@ -20,7 +19,7 @@ public class ArcheryApplication extends Application {
    * Archery module.
    */
   public ArcheryApplication() {
-    super(new Community(), new Tournament());
+    super(new Community(), new Regulation(), new Tournament());
   }
 }
 
