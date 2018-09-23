@@ -6,8 +6,8 @@ import org.springframework.context.annotation.Configuration;
 
 import com.k2.core.Application;
 
-import com.archery.community.Community;
-import com.archery.tournament.Tournament;
+import com.archery.Community;
+import com.archery.Tournament;
 
 /** The Archeryapplication.
  *
