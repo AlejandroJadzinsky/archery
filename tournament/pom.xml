@@ -23,6 +23,17 @@
       <artifactId>k2-core</artifactId>
     </dependency>
 
+    <dependency>
+      <groupId>com.archery</groupId>
+      <artifactId>regulation</artifactId>
+      <version>0.1-SNAPSHOT</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.archery</groupId>
+      <artifactId>community</artifactId>
+      <version>0.1-SNAPSHOT</version>
+    </dependency>
     <!-- ++++++++++++++++++++++++++++++++++++++++++++++ -->
     <!-- Test dependencies -->
     <!-- ++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -31,6 +42,10 @@
       <artifactId>junit-jupiter-api</artifactId>
     </dependency>
 
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-all</artifactId>
+    </dependency>
   </dependencies>
 </project>
 
