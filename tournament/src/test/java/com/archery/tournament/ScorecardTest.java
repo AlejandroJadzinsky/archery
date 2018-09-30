@@ -39,7 +39,8 @@ class ScorecardTest {
     assertEquals(round1Score.getPoints(), 26);
     assertEquals(round1Score.getBonuses(), 0);
     assertEquals(round1Score.getMisses(), 1);
-    assertEquals(round1.getScorings().size(), 3, "Wrong number of ends in round 1");
+    assertEquals(round1.getScorings().size(), 3,
+        "Wrong number of ends in round 1");
 
     //validate second round
     RoundScore round2 = score.getScorings().get(1);
@@ -48,7 +49,8 @@ class ScorecardTest {
     assertEquals(round2Score.getPoints(), 14);
     assertEquals(round2Score.getBonuses(), 1);
     assertEquals(round2Score.getMisses(), 1);
-    assertEquals(round2.getScorings().size(), 2, "Wrong number of ends in round 2");
+    assertEquals(round2.getScorings().size(), 2,
+        "Wrong number of ends in round 2");
 
     //validate ends in second round
     RoundScore.EndScore end1Round2 = round2.getScorings().get(0);
@@ -85,7 +87,8 @@ class ScorecardTest {
     assertEquals(round1Score.getPoints(), 26);
     assertEquals(round1Score.getBonuses(), 0);
     assertEquals(round1Score.getMisses(), 1);
-    assertEquals(round1.getScorings().size(), 3, "Wrong number of ends in round 1");
+    assertEquals(round1.getScorings().size(), 3,
+        "Wrong number of ends in round 1");
 
     //validate second round
     RoundScore round2 = score.getScorings().get(1);
@@ -94,7 +97,8 @@ class ScorecardTest {
     assertEquals(round2Score.getPoints(), 14);
     assertEquals(round2Score.getBonuses(), 1);
     assertEquals(round2Score.getMisses(), 4);
-    assertEquals(round2.getScorings().size(), 3, "Wrong number of ends in round 2");
+    assertEquals(round2.getScorings().size(), 3,
+        "Wrong number of ends in round 2");
 
 //    System.out.println(card.print());
   }
@@ -128,7 +132,8 @@ class ScorecardTest {
     assertEquals(round1Score.getPoints(), 0);
     assertEquals(round1Score.getBonuses(), 0);
     assertEquals(round1Score.getMisses(), 0);
-    assertEquals(round1.getScorings().size(), 0, "Wrong number of ends in round 1");
+    assertEquals(round1.getScorings().size(), 0,
+        "Wrong number of ends in round 1");
 
     //validate second round
     RoundScore round2 = score.getScorings().get(1);
@@ -137,7 +142,8 @@ class ScorecardTest {
     assertEquals(round2Score.getPoints(), 0);
     assertEquals(round2Score.getBonuses(), 0);
     assertEquals(round2Score.getMisses(), 0);
-    assertEquals(round2.getScorings().size(), 0, "Wrong number of ends in round 2");
+    assertEquals(round2.getScorings().size(), 0,
+        "Wrong number of ends in round 2");
 
 //    System.out.println(score.print());
   }

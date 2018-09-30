@@ -20,11 +20,8 @@ import com.archery.regulation.ShootingStyle;
  *   - style where the archer competes.
  */
 public class TournamentRegistration {
-  /** The max number of participants allowed. */
   private int quota;
-  /** The archers registered. Never null. */
   private Map<Archer, ArcherRegistration> participants;
-  /** Indicates if the Archer can register or not. */
   //TODO registration may be closed just by the passing of time, may be with
   // a dueDate
   private boolean open;
@@ -42,6 +39,14 @@ public class TournamentRegistration {
     open = true;
   }
 
+  /** Register an {@link Archer}.
+   *
+   * @param archer the archer to register, cannot be null.
+   * @param style the style in which the archer wants to compete, cannot be
+   * null.
+   * @param division the division in which the archer wants to compete,
+   * cannot be null.
+   */
   public void registerArcher(final Archer archer, final ShootingStyle style,
       final ShootingDivision division) {
     validateRegistration();
@@ -49,20 +54,40 @@ public class TournamentRegistration {
     participants.put(archer, new ArcherRegistration(archer, style, division));
   }
 
+  /** Checks if the given {@link Archer} is already registered.
+   *
+   * @param archer an {@link Archer} instance, cannot be null.
+   *
+   * @return true if the given {@link Archer} is registered, otherwise false.
+   */
   public boolean isArcherRegistered(final Archer archer) {
     return participants.get(archer) != null;
   }
 
+  /** Unregister an archer.
+   *
+   * @param archer an {@link Archer} instance, never null.
+   */
   public void unregisterArcher(final Archer archer) {
     validateRegistration();
 
     participants.remove(archer);
   }
 
+  /** Search for an archer registration in this instance.
+   *
+   * @param archer an {@link Archer} instance.
+   *
+   * @return an {@link ArcherRegistration} instance or null if none is fund.
+   */
   public ArcherRegistration getRegistration(final Archer archer) {
     return participants.get(archer);
   }
 
+  /** Exposes the registered archers.
+   *
+   * @return a collection of {@link ArcherRegistration} instances, never null.
+   */
   public Collection<ArcherRegistration> getRegistrations() {
     return Collections.unmodifiableCollection(participants.values());
   }
@@ -75,6 +100,9 @@ public class TournamentRegistration {
     return open;
   }
 
+  /** Close this instance, after this method invocation registration is no
+   * longer possible.
+   */
   public void closeRegistration() {
     open = false;
   }
@@ -92,6 +120,10 @@ public class TournamentRegistration {
     return getRemainingPositions() > 0;
   }
 
+  /** Returns the number of available positions.
+   *
+   * @return an int, always positive or zero.
+   */
   public int getRemainingPositions() {
     return quota - participants.size();
   }

@@ -73,15 +73,15 @@ public class RoundSetUp {
     Validate.notNull(to, "Destination patrol cannot be null");
 
     Patrol fromPatrol = patrolsOrder.get(from);
-    Validate.notNull(fromPatrol, "Origin ShootingPosition " + from.getPosition()
+    Validate.notNull(fromPatrol, "Origin ShootingPosition " + from.logInfo()
         + " does not exist");
     Patrol toPatrol = patrolsOrder.get(to);
     Validate.notNull(fromPatrol, "Destination ShootingPosition "
-        + to.getPosition() + " does not exist");
+        + to.logInfo() + " does not exist");
 
     if (fromPatrol.removeArcher(archer) == null) {
       throw new RuntimeException(String.format("Archer %s is not in patrol %s",
-          archer.logInfo(), from.getPosition())
+          archer.logInfo(), from.logInfo())
       );
     }
     toPatrol.addArcher(archer);

@@ -12,23 +12,8 @@
     <version>0.1-SNAPSHOT</version>
   </parent>
 
-  <artifactId>regulation</artifactId>
+  <artifactId>build-tools</artifactId>
   <packaging>jar</packaging>
 
-  <dependencies>
-    <dependency>
-      <groupId>com.github.katari</groupId>
-      <artifactId>k2-core</artifactId>
-    </dependency>
-
-    <!-- ++++++++++++++++++++++++++++++++++++++++++++++ -->
-    <!-- Test dependencies -->
-    <!-- ++++++++++++++++++++++++++++++++++++++++++++++ -->
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-api</artifactId>
-    </dependency>
-
-  </dependencies>
 </project>
 

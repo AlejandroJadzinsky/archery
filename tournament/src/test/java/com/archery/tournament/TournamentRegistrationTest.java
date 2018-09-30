@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.test.util.ReflectionTestUtils;
 
 import com.archery.community.Archer;
 import com.archery.community.Seat;
@@ -45,7 +46,8 @@ class TournamentRegistrationTest {
           "Wrong open positions");
 
       Archer archer = new Archer("archer1");
-      registrar.registerArcher(archer, ShootingStyle.BL, ShootingDivision.ADULT);
+      registrar.registerArcher(archer, ShootingStyle.BL,
+          ShootingDivision.ADULT);
 
       assertEquals(1, registrar.getRemainingPositions(),
           "Wrong open positions");
@@ -74,23 +76,30 @@ class TournamentRegistrationTest {
       assertEquals(2, registrar.getRemainingPositions(),
           "Wrong open positions");
       Archer archer = new Archer("archer1");
-      registrar.registerArcher(archer, ShootingStyle.BL, ShootingDivision.ADULT);
+      registrar.registerArcher(archer, ShootingStyle.BL,
+          ShootingDivision.ADULT);
       registrar.registerArcher(archer, ShootingStyle.BU, ShootingDivision.CUB);
 
       assertEquals(1, registrar.getRemainingPositions(),
           "Wrong open positions");
       assertTrue(registrar.isArcherRegistered(archer),
           "Registered archer is missing.");
-      assertEquals(registrar.getRegistration(archer).getStyle(),
-          ShootingStyle.BU);
-      assertEquals(registrar.getRegistration(archer).getDivision(),
-          ShootingDivision.CUB);
+
+      ArcherRegistration registered = registrar.getRegistration(archer);
+      ShootingStyle style = (ShootingStyle) ReflectionTestUtils.getField(
+          registered, "style");
+      ShootingDivision division = (ShootingDivision) ReflectionTestUtils
+          .getField(registered, "division");
+
+      assertEquals(style, ShootingStyle.BU);
+      assertEquals(division, ShootingDivision.CUB);
     }
 
     @Test
     void unregisterArcher() {
       Archer archer = new Archer("archer1");
-      registrar.registerArcher(archer, ShootingStyle.BL, ShootingDivision.ADULT);
+      registrar.registerArcher(archer, ShootingStyle.BL,
+          ShootingDivision.ADULT);
 
       assertEquals(1, registrar.getRemainingPositions(),
           "Wrong open positions");

@@ -2,11 +2,11 @@ package com.archery.tournament;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import org.apache.commons.lang3.Validate;
 
 import com.archery.regulation.ShootingDivision;
 import com.archery.regulation.ShootingStyle;
@@ -17,13 +17,27 @@ public class TournamentScore {
 
   private List<Scorecard> scorecards;
 
+  /** Creates a new {@link TournamentScore} instance.
+   *
+   * @param scorecardBuilder a {@link ScorecardBuilder} instance, cannot be
+   * null.
+   * @param registrations a collection of {@link ArcherRegistration}
+   * instances, cannot be null nor empty.
+   */
   public TournamentScore(final ScorecardBuilder scorecardBuilder,
       final Collection<ArcherRegistration> registrations) {
-    scorecards = new LinkedList<>();
+    Validate.notNull(scorecardBuilder, "ScorecardBuilder is null");
+    Validate.notEmpty(registrations, "Archer registrations cannot be null nor"
+        + " empty");
 
+    scorecards = new LinkedList<>();
     registrations.forEach(r -> scorecards.add(scorecardBuilder.forArcher(r)));
   }
 
+  /** Exposes the list of {@link Scorecard} in this instance.
+   *
+   * @return a list of {@link Scorecard} instances, never null.
+   */
   public List<Scorecard> getScorecards() {
     return Collections.unmodifiableList(scorecards);
   }
@@ -51,7 +65,7 @@ public class TournamentScore {
     List<Scorecard> result;
     result = filterScorecards(filterStyle, filterDivision);
 
-    result.sort(getComparator(sortByArcher, sortByScore));
+    result.sort(Scorecard.getComparatorBy(sortByArcher, sortByScore));
     return result;
   }
 
@@ -65,27 +79,5 @@ public class TournamentScore {
       stream = stream.filter(s -> s.is(byDivision));
     }
     return stream.collect(Collectors.toList());
-  }
-
-  private Comparator<Scorecard> getComparator(final boolean sortByArcher,
-      final boolean sortByScore) {
-    return (o1, o2) -> {
-      //score comparison is in reverse order, we want the higher scores first.
-      int scoreComparision = o2.getScore().compareTo(o1.getScore());
-      int archerComparision = o1.getArcherRegistration().getArcher().compareTo
-          (o2.getArcherRegistration().getArcher());
-
-      if (sortByArcher && sortByScore) {
-        if (scoreComparision == 0) {
-          return archerComparision;
-        }
-        return scoreComparision;
-      }
-      if (sortByArcher) {
-        return archerComparision;
-      }
-
-      return scoreComparision;
-    };
   }
 }

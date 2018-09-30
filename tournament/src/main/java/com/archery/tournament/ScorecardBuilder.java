@@ -8,10 +8,22 @@ import com.archery.regulation.TournamentDefinition;
 public class ScorecardBuilder {
   private TournamentDefinition tournamentDefinition;
 
+  /** Creates a new {@link ScorecardBuilder} instance.
+   *
+   * @param definition a {@link TournamentDefinition} instance, cannot be null.
+   */
   public ScorecardBuilder(final TournamentDefinition definition) {
     tournamentDefinition = definition;
   }
 
+  /** Creates a new {@link Scorecard} instance for the given
+   * {@link ArcherRegistration}.
+   *
+   * @param archerRegistration an {@link ArcherRegistration} instance, cannot
+   * be null.
+   *
+   * @return a new {@link Scorecard} instance, never null.
+   */
   public Scorecard forArcher(final ArcherRegistration archerRegistration) {
     return new Scorecard(tournamentDefinition, archerRegistration);
   }

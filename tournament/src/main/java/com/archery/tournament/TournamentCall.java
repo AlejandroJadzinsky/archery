@@ -17,15 +17,19 @@ import com.archery.regulation.TournamentDefinition;
  *   - When it is scheduled
  */
 public class TournamentCall {
-  /** The start date, never null. */
   private LocalDate date;
-  /** The start time, never null. */
   private LocalTime time;
-  /** The location, never null. */
   private Seat seat;
-  /** The type of {@link TournamentDefinition contest} organized, never null. */
   private TournamentDefinition tournamentDefinition;
 
+  /** Creates a new {@link TournamentCall} instance.
+   *
+   * @param theDate the start date, cannot be null.
+   * @param theTime the start time, cannot null.
+   * @param theSeat the location, cannot null.
+   * @param theTournamentDefinition the type of {@link TournamentDefinition}
+   * organized, cannot null.
+   */
   public TournamentCall(final LocalDate theDate, final LocalTime theTime,
       final Seat theSeat, final TournamentDefinition theTournamentDefinition) {
     Validate.notNull(theSeat, "The Contest seat is null");

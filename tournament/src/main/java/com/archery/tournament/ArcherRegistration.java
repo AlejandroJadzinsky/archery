@@ -18,6 +18,12 @@ public class ArcherRegistration {
   private ShootingStyle style;
   private ShootingDivision division;
 
+  /** Creates a new {@link ArcherRegistration} instance.
+   *
+   * @param theArcher an {@link Archer} instance, cannot be null.
+   * @param theStyle an {@link ShootingStyle} instance, cannot be null.
+   * @param theDivision an {@link ShootingDivision} instance, cannot be null.
+   */
   public ArcherRegistration(final Archer theArcher,
       final ShootingStyle theStyle, final ShootingDivision theDivision) {
     Validate.notNull(theArcher, "Archer cannot be null");
@@ -29,26 +35,41 @@ public class ArcherRegistration {
     division = theDivision;
   }
 
+  /** Expose the registered {@link Archer}.
+   *
+   * @return an {@link Archer} instance, never null.
+   */
   public Archer getArcher() {
     return archer;
   }
 
-  public ShootingStyle getStyle() {
-    return style;
-  }
-
-  public ShootingDivision getDivision() {
-    return division;
-  }
-
+  /** Checks if this registration instance is of a certain
+   * {@link ShootingStyle style}.
+   *
+   * @param aStyle a {@link ShootingStyle} instance, cannot be null.
+   *
+   * @return true if this instance is for the given {@link ShootingStyle}
+   * style, otherwise false.
+   */
   public boolean isStyle(final ShootingStyle aStyle) {
     return style.equals(aStyle);
   }
 
+  /** Checks if this registration instance is of a certain
+   * {@link ShootingDivision division}.
+   *
+   * @param aDivision a {@link ShootingDivision} instance, cannot be null.
+   *
+   * @return true if this instance is for the given {@link ShootingDivision}
+   * division, otherwise false.
+   */
   public boolean isDivision(final ShootingDivision aDivision) {
     return division.equals(aDivision);
   }
 
+  /** Just for debugging. Delete asap.
+   * @return a String, never null nor empty.
+   */
   String print() {
     StringBuilder builder = new StringBuilder();
     builder.append("ARCHER: ").append(archer.logInfo())
