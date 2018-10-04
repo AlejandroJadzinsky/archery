@@ -1,0 +1,53 @@
+swagger: '2.0'
+info:
+  description: Archery Community API
+  version: 0.0.1
+  title: Archery Community API
+
+  contact:
+    email: jadzinsky@gmail.com
+
+  license:
+    name: proprietary
+    url: none
+
+schemes:
+- http
+
+paths:
+  /archer:
+    post:
+      tags:
+      - community
+      summary: Creates a new archer
+      operationId: createArcher
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        required: true
+        schema:
+          $ref: "#/definitions/Archer"
+      responses:
+        201:
+          description: "created"
+
+definitions:
+  Archer:
+    type: object
+    required:
+    - archer_name
+    - archer_email
+    - archer_pass
+    properties:
+      archer_name:
+        type: string
+        description: The archer's name
+      archer_email:
+        type: string
+        format: email
+        description: The archer's valid email, must be unique.
+      archer_pass:
+        type: string
+        description: The archer's credential password
+

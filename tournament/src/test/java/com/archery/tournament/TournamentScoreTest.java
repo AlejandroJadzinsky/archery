@@ -18,7 +18,7 @@ class TournamentScoreTest {
 
   @BeforeEach
   void setUp() {
-    tournamentScore = ArcheryMother.testTournamentScore();
+    tournamentScore = TournamentMother.testTournamentScore();
   }
 
   @Test
@@ -27,8 +27,8 @@ class TournamentScoreTest {
         null);
 
     assertEquals(result.size(), 2);
-    assertEquals(getArcherFrom(result.get(0)).logInfo(), "archer1");
-    assertEquals(getArcherFrom(result.get(1)).logInfo(), "archer2");
+    assertEquals(getArcherFrom(result.get(0)).logInfo(), "archer1@mail.com");
+    assertEquals(getArcherFrom(result.get(1)).logInfo(), "archer2@mail.com");
   }
 
   @Test
@@ -51,7 +51,7 @@ class TournamentScoreTest {
   void sortScorecards_sortByScoreAndArcher() {
     List<Scorecard> scorecards = tournamentScore.getScorecards();
     boolean pos0isArcher1 = getArcherFrom(scorecards.get(0)).logInfo().equals(
-        "archer1");
+        "archer1@mail.com");
     if (pos0isArcher1) {
       scorecards.get(0).score(FIVE, FIVE, FIVE);
       scorecards.get(1).score(CROSS, FIVE, FIVE);
@@ -64,8 +64,8 @@ class TournamentScoreTest {
         null);
 
     assertEquals(result.size(), 2);
-    assertEquals(getArcherFrom(result.get(0)).logInfo(), "archer2");
-    assertEquals(getArcherFrom(result.get(1)).logInfo(), "archer1");
+    assertEquals(getArcherFrom(result.get(0)).logInfo(), "archer2@mail.com");
+    assertEquals(getArcherFrom(result.get(1)).logInfo(), "archer1@mail.com");
   }
 
   private Archer getArcherFrom(final Scorecard scorecard) {

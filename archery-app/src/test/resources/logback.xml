@@ -7,15 +7,20 @@
   <include resource="com/k2/core/logback/base.xml" />
 
   <!-- Logs to the console when the application starts. -->
-  <logger name="com.k2" additivity="false" level="TRACE">
+  <logger name="com.k2" additivity="false" level="INFO">
+    <appender-ref ref="CONSOLE" />
     <appender-ref ref='FILE' />
   </logger>
 
-  <root level="INFO">
-    <appender-ref ref="CONSOLE_ERRORS" />
+  <logger name="com.archery" additivity="false" level="TRACE">
+    <appender-ref ref="CONSOLE" />
+    <appender-ref ref='FILE' />
+  </logger>
+
+  <root level="ERROR">
+    <appender-ref ref="CONSOLE" />
     <appender-ref ref="FILE" />
   </root>
 
-  <!-- vim: set ts=2 et sw=2 ai: -->
 </configuration>
 

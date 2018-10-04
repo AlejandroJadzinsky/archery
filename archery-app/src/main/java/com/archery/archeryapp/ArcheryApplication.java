@@ -3,12 +3,13 @@ package com.archery.archeryapp;
 import org.springframework.context.annotation.Configuration;
 
 import com.k2.core.Application;
+import com.k2.swagger.Swagger;
 
 import com.archery.Community;
 import com.archery.Regulation;
 import com.archery.Tournament;
 
-/** The Archeryapplication.
+/** The Archery application.
  *
  * This application includes the Archery module.
  */
@@ -19,7 +20,7 @@ public class ArcheryApplication extends Application {
    * Archery module.
    */
   public ArcheryApplication() {
-    super(new Community(), new Regulation(), new Tournament());
+    super(new Community(), new Regulation(), new Tournament(), new Swagger());
   }
 }
 

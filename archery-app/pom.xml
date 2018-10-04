@@ -38,6 +38,7 @@
       <artifactId>tournament</artifactId>
       <version>0.1-SNAPSHOT</version>
     </dependency>
+
     <!-- ++++++++++++++++++++++++++++++++++++++++++++++ -->
     <!-- Test dependencies -->
     <!-- ++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -62,16 +63,12 @@
         </executions>
 
         <configuration>
-          <!-- This configures the plugin when invoked from the command line.
-                 -->
           <mainClass>com.archery.archeryapp.ArcheryLauncher</mainClass>
-          <!-- mainClass>com.avenida.marketplace.MarketplaceLauncher</mainClass  -->
-          <!-- Removes target repeated files which is extremely annoying in dev. -->
-          <!-- This explains why the module information is not shown correctly. -->
-          <!-- <addResources>false</addResources> -->
-          <folders>
-            <folder>tournament-app/target/test-classes</folder>
-          </folders>
+          <!-- By default run with test configuration -->
+          <jvmArguments>
+            -Dspring.config.location=${project.basedir}/src/test/resources/application.properties
+            -Dlogging.config=file:${project.basedir}/src/test/resources/logback.xml
+          </jvmArguments>
           <useTestClasspath>true</useTestClasspath>
         </configuration>
       </plugin>

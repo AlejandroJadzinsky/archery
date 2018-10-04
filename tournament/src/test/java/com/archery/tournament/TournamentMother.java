@@ -1,5 +1,6 @@
 package com.archery.tournament;
 
+import static com.archery.community.CommunityMother.newArcher;
 import static com.archery.regulation.TargetZone.*;
 import static com.archery.regulation.TargetZone.CROSS;
 
@@ -15,10 +16,10 @@ import com.archery.regulation.Target;
 import com.archery.regulation.TargetZone;
 import com.archery.regulation.TournamentDefinition;
 
-public class ArcheryMother {
+public class TournamentMother {
 
-  private static Archer archer1 = new Archer("archer1");
-  private static Archer archer2 = new Archer("archer2");
+  private static Archer archer1 = newArcher("archer1");
+  private static Archer archer2 = newArcher("archer2");
 
   public static TournamentDefinition testTournamentDefinition() {
     Map<TargetZone, Integer> targetZones = new HashMap<>();
@@ -43,27 +44,19 @@ public class ArcheryMother {
     return new TournamentDefinition(roundDefinitions);
   }
 
-  public static Archer archer1() {
-    return archer1;
-  }
-
-  public static Archer archer2() {
-    return archer2;
-  }
-
   public static ArcherRegistration archer1BlAdult() {
-    return testTournamentRegistration().getRegistration(archer1());
+    return testTournamentRegistration().getRegistration(archer1);
   }
 
   public static ArcherRegistration archer2LbAdult() {
-    return testTournamentRegistration().getRegistration(archer2());
+    return testTournamentRegistration().getRegistration(archer2);
   }
 
   public static TournamentRegistration testTournamentRegistration() {
     TournamentRegistration registration = new TournamentRegistration(4);
-    registration.registerArcher(archer1(), ShootingStyle.BL,
+    registration.registerArcher(archer1, ShootingStyle.BL,
         ShootingDivision.ADULT);
-    registration.registerArcher(archer2(), ShootingStyle.LB,
+    registration.registerArcher(archer2, ShootingStyle.LB,
         ShootingDivision.VETERAN);
 
     return registration;

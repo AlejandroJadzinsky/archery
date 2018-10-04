@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static com.archery.community.CommunityMother.newArcher;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -17,6 +18,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import com.archery.community.Archer;
+import com.archery.community.CommunityMother;
 import com.archery.community.Seat;
 import com.archery.regulation.ShootingDivision;
 import com.archery.regulation.ShootingStyle;
@@ -45,7 +47,7 @@ class TournamentRegistrationTest {
       assertEquals(2, registrar.getRemainingPositions(),
           "Wrong open positions");
 
-      Archer archer = new Archer("archer1");
+      Archer archer = newArcher("archer1");
       registrar.registerArcher(archer, ShootingStyle.BL,
           ShootingDivision.ADULT);
 
@@ -57,13 +59,13 @@ class TournamentRegistrationTest {
 
     @Test
     void registerArcher_noMoreRoom() {
-      registrar.registerArcher(new Archer("archer1"), ShootingStyle.BL,
+      registrar.registerArcher(newArcher("archer1"), ShootingStyle.BL,
           ShootingDivision.ADULT);
-      registrar.registerArcher(new Archer("archer2"), ShootingStyle.BL,
+      registrar.registerArcher(newArcher("archer2"), ShootingStyle.BL,
           ShootingDivision.ADULT);
 
       assertThrows(Exception.class,
-          () -> registrar.registerArcher(new Archer("archer3"),
+          () -> registrar.registerArcher(CommunityMother.newArcher("archer3"),
               ShootingStyle.BL, ShootingDivision.ADULT),
           "Exception expected with no room");
 
@@ -75,7 +77,7 @@ class TournamentRegistrationTest {
     void registerArcher_alreadyRegistered() {
       assertEquals(2, registrar.getRemainingPositions(),
           "Wrong open positions");
-      Archer archer = new Archer("archer1");
+      Archer archer = newArcher("archer1");
       registrar.registerArcher(archer, ShootingStyle.BL,
           ShootingDivision.ADULT);
       registrar.registerArcher(archer, ShootingStyle.BU, ShootingDivision.CUB);
@@ -97,7 +99,7 @@ class TournamentRegistrationTest {
 
     @Test
     void unregisterArcher() {
-      Archer archer = new Archer("archer1");
+      Archer archer = newArcher("archer1");
       registrar.registerArcher(archer, ShootingStyle.BL,
           ShootingDivision.ADULT);
 
@@ -118,7 +120,7 @@ class TournamentRegistrationTest {
       TournamentRegistration closedRegistration = new TournamentRegistration(2);
       closedRegistration.closeRegistration();
       Executable register = () -> closedRegistration.registerArcher(
-          new Archer("archer1"), ShootingStyle.BL, ShootingDivision.ADULT);
+          newArcher("archer1"), ShootingStyle.BL, ShootingDivision.ADULT);
       assertThrows(Exception.class, register,
           "Exception expected when registration is closed");
     }

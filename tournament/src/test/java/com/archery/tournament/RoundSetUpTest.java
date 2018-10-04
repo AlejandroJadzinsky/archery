@@ -1,6 +1,7 @@
 package com.archery.tournament;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static com.archery.community.CommunityMother.*;
 
 import java.util.HashSet;
 import java.util.Map;
@@ -17,15 +18,15 @@ class RoundSetUpTest {
   @BeforeEach
   void setUp() {
     archers = new HashSet<>();
-    archers.add(new Archer("a1"));
-    archers.add(new Archer("a2"));
-    archers.add(new Archer("a3"));
-    archers.add(new Archer("a4"));
-    archers.add(new Archer("a5"));
-    archers.add(new Archer("a6"));
-    archers.add(new Archer("a7"));
-    archers.add(new Archer("a8"));
-    archers.add(new Archer("a9"));
+    archers.add(newArcher("a1"));
+    archers.add(newArcher("a2"));
+    archers.add(newArcher("a3"));
+    archers.add(newArcher("a4"));
+    archers.add(newArcher("a5"));
+    archers.add(newArcher("a6"));
+    archers.add(newArcher("a7"));
+    archers.add(newArcher("a8"));
+    archers.add(newArcher("a9"));
   }
 
   @Test

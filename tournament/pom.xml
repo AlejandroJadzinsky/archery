@@ -32,6 +32,7 @@
       <artifactId>community</artifactId>
       <version>0.1-SNAPSHOT</version>
     </dependency>
+
     <!-- ++++++++++++++++++++++++++++++++++++++++++++++ -->
     <!-- Test dependencies -->
     <!-- ++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -49,6 +50,15 @@
       <groupId>org.springframework</groupId>
       <artifactId>spring-test</artifactId>
     </dependency>
+
+    <dependency>
+      <groupId>com.archery</groupId>
+      <artifactId>community</artifactId>
+      <version>0.1-SNAPSHOT</version>
+      <type>test-jar</type>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
+
 </project>
 

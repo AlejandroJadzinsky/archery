@@ -11,7 +11,7 @@ class ScorecardTest {
 
   @BeforeEach
   void setUp() {
-    score = ArcheryMother.archer1ScorecardEmpty();
+    score = TournamentMother.archer1ScorecardEmpty();
   }
 
   @Test

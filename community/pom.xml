@@ -21,6 +21,19 @@
       <artifactId>k2-core</artifactId>
     </dependency>
 
+    <dependency>
+      <groupId>com.github.katari</groupId>
+      <artifactId>k2-swagger</artifactId>
+    </dependency>
+
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- Swagger related dependencies -->
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <dependency>
+      <groupId>io.swagger</groupId>
+      <artifactId>swagger-annotations</artifactId>
+    </dependency>
+
     <!-- ++++++++++++++++++++++++++++++++++++++++++++++ -->
     <!-- Test dependencies -->
     <!-- ++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -28,7 +41,73 @@
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
     </dependency>
-
   </dependencies>
+
+  <build>
+    <plugins>
+
+      <plugin>
+        <groupId>io.swagger</groupId>
+        <artifactId>swagger-codegen-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <inputSpec>
+                ${project.basedir}/src/main/resources/com/archery/static/community.yaml
+              </inputSpec>
+              <language>spring</language>
+              <library>spring-mvc</library>
+
+              <modelPackage>com.archery.community.api.model</modelPackage>
+              <apiPackage>com.archery.community.api</apiPackage>
+
+              <modelNameSuffix>Dto</modelNameSuffix>
+
+              <addCompileSourceRoot>false</addCompileSourceRoot>
+              <ignoreFileOverride>
+                ${project.basedir}/src/swagger/ignore
+              </ignoreFileOverride>
+              <configOptions>
+                <configPackage>com.archery.community.api</configPackage>
+                <delegatePattern>true</delegatePattern>
+                <dateLibrary>java8</dateLibrary>
+                <useTags>true</useTags>
+              </configOptions>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>1.10</version>
+        <executions>
+          <execution>
+            <id>add_sources</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>add-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>src/main/java</source>
+                <source>target/generated-sources/swagger/src/main/java</source>
+              </sources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+      </plugin>
+
+    </plugins>
+  </build>
 </project>
 
