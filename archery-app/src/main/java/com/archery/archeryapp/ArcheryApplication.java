@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.k2.core.Application;
 import com.k2.swagger.Swagger;
+import com.k2.hibernate.Hibernate;
 
 import com.archery.Community;
 import com.archery.Regulation;
@@ -20,7 +21,8 @@ public class ArcheryApplication extends Application {
    * Archery module.
    */
   public ArcheryApplication() {
-    super(new Community(), new Regulation(), new Tournament(), new Swagger());
+    super(new Hibernate(), new Community(), new Regulation(), new Tournament(),
+        new Swagger());
   }
 }
 

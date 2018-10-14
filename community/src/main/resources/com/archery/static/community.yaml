@@ -19,8 +19,8 @@ paths:
     post:
       tags:
       - community
-      summary: Creates a new archer
-      operationId: createArcher
+      summary: Register a new archer
+      operationId: registerArcher
       produces:
       - application/json
       parameters:
@@ -36,18 +36,18 @@ definitions:
   Archer:
     type: object
     required:
-    - archer_name
-    - archer_email
-    - archer_pass
+    - name
+    - email
+    - pass
     properties:
-      archer_name:
+      name:
         type: string
         description: The archer's name
-      archer_email:
+      email:
         type: string
         format: email
         description: The archer's valid email, must be unique.
-      archer_pass:
+      pass:
         type: string
         description: The archer's credential password
 

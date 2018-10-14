@@ -1,6 +1,6 @@
 package com.archery.community;
 
-public class CommunityMother {
+public class CommunityFactory {
 
   /** Creates a new Archer instance with these attributes:
    *

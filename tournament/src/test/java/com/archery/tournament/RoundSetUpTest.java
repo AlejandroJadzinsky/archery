@@ -1,7 +1,7 @@
 package com.archery.tournament;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static com.archery.community.CommunityMother.*;
+import static com.archery.community.CommunityFactory.*;
 
 import java.util.HashSet;
 import java.util.Map;

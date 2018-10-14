@@ -1,6 +1,6 @@
 package com.archery.tournament;
 
-import static com.archery.community.CommunityMother.newArcher;
+import static com.archery.community.CommunityFactory.newArcher;
 import static com.archery.regulation.TargetZone.*;
 import static com.archery.regulation.TargetZone.CROSS;
 
@@ -16,7 +16,7 @@ import com.archery.regulation.Target;
 import com.archery.regulation.TargetZone;
 import com.archery.regulation.TournamentDefinition;
 
-public class TournamentMother {
+public class TournamentFactory {
 
   private static Archer archer1 = newArcher("archer1");
   private static Archer archer2 = newArcher("archer2");

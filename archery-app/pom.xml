@@ -46,6 +46,12 @@
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
     </dependency>
+
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+    </dependency>
+
   </dependencies>
 
   <build>
@@ -63,7 +69,11 @@
         </executions>
 
         <configuration>
-          <mainClass>com.archery.archeryapp.ArcheryLauncher</mainClass>
+          <mainClass>com.archery.archeryapp.LauncherTestApplication</mainClass>
+          <useTestClasspath>true</useTestClasspath>
+          <folders>
+            <folder>target/test-classes</folder>
+          </folders>
           <!-- By default run with test configuration -->
           <jvmArguments>
             -Dspring.config.location=${project.basedir}/src/test/resources/application.properties

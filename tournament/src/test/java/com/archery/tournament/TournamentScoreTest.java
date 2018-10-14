@@ -18,7 +18,7 @@ class TournamentScoreTest {
 
   @BeforeEach
   void setUp() {
-    tournamentScore = TournamentMother.testTournamentScore();
+    tournamentScore = TournamentFactory.testTournamentScore();
   }
 
   @Test

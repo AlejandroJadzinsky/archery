@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static com.archery.community.CommunityMother.newArcher;
+import static com.archery.community.CommunityFactory.newArcher;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -18,7 +18,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import com.archery.community.Archer;
-import com.archery.community.CommunityMother;
+import com.archery.community.CommunityFactory;
 import com.archery.community.Seat;
 import com.archery.regulation.ShootingDivision;
 import com.archery.regulation.ShootingStyle;
@@ -65,7 +65,7 @@ class TournamentRegistrationTest {
           ShootingDivision.ADULT);
 
       assertThrows(Exception.class,
-          () -> registrar.registerArcher(CommunityMother.newArcher("archer3"),
+          () -> registrar.registerArcher(CommunityFactory.newArcher("archer3"),
               ShootingStyle.BL, ShootingDivision.ADULT),
           "Exception expected with no room");
 
