@@ -19,6 +19,7 @@ import com.archery.community.CommunityService;
 import com.archery.community.api.CommunityApi;
 import com.archery.community.api.CommunityApiController;
 import com.archery.community.api.CommunityApiDelegate;
+import com.archery.infranstructure.ErrorHandler;
 
 /** The {@link Community} module.
  */
@@ -54,8 +55,7 @@ public class Community implements Registrator {
    * @return a {@link CommunityApiDelegate} implementation, never null.
    */
   @Bean @Public
-  public CommunityService communityService(
-      final ArcherService archerService) {
+  public CommunityService communityService(final ArcherService archerService) {
     return new CommunityService(archerService);
   }
 
@@ -81,6 +81,15 @@ public class Community implements Registrator {
   @Bean
   ArcherRepository archerRepository(final SessionFactory sessionFactory) {
     return new ArcherRepository(sessionFactory);
+  }
+
+  /** Creates the Application {@link ErrorHandler} instance.
+   *
+   * @return an {@link ErrorHandler} instance, never null.
+   */
+  @Bean
+  ErrorHandler errorHandler() {
+    return new ErrorHandler();
   }
 }
 

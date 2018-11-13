@@ -150,7 +150,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-    <k2.version>0.0.20-SNAPSHOT</k2.version>
+    <k2.version>0.1.1-SNAPSHOT</k2.version>
 
     <!-- testing -->
     <surefire.version>2.22.0</surefire.version>
@@ -160,6 +160,7 @@
 
   <modules>
     <module>build-tools</module>
+    <module>infrastructure</module>
     <module>archery-app</module>
     <module>community</module>
     <module>regulation</module>

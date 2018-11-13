@@ -3,6 +3,7 @@ package com.archery.community;
 import org.apache.commons.lang3.Validate;
 
 import com.archery.community.api.model.ArcherDto;
+import com.archery.infranstructure.BusinessException;
 
 /** The Archer contract implementation.
  *  This service is meant to let CommunityService deal with archers. */
@@ -27,8 +28,13 @@ public class ArcherService {
   void createArcher(final ArcherDto archer) {
     Validate.notNull(archer, "The ArcherDto is null");
 
-    Archer newArcher = new Archer(archer.getName(), archer.getEmail(),
-        archer.getPass());
-    archerRepository.add(newArcher);
+    try {
+      Archer newArcher = new Archer(archer.getName(), archer.getEmail(),
+          archer.getPass());
+      archerRepository.add(newArcher);
+    } catch (Exception e) {
+      throw new BusinessException("Cannot create Archer", e, archer,
+          "ArcherService.createArcher");
+    }
   }
 }
