@@ -6,7 +6,7 @@ import com.k2.core.Application;
 import com.k2.swagger.Swagger;
 import com.k2.hibernate.Hibernate;
 
-import com.archery.Community;
+import com.archery.community.CommunityRegistrator;
 import com.archery.Regulation;
 import com.archery.Tournament;
 
@@ -21,8 +21,8 @@ public class ArcheryApplication extends Application {
    * Archery module.
    */
   public ArcheryApplication() {
-    super(new Hibernate(), new Community(), new Regulation(), new Tournament(),
-        new Swagger());
+    super(new Hibernate(), new CommunityRegistrator(), new Regulation(),
+        new Tournament(), new Swagger());
   }
 }
 

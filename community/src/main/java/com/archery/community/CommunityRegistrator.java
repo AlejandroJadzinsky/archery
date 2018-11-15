@@ -1,4 +1,4 @@
-package com.archery;
+package com.archery.community;
 
 import com.k2.core.Module;
 import com.k2.core.ModuleContext;
@@ -12,22 +12,18 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.archery.community.Archer;
-import com.archery.community.ArcherRepository;
-import com.archery.community.ArcherService;
-import com.archery.community.CommunityService;
 import com.archery.community.api.CommunityApi;
 import com.archery.community.api.CommunityApiController;
 import com.archery.community.api.CommunityApiDelegate;
 import com.archery.infranstructure.ErrorHandler;
 
-/** The {@link Community} module.
+/** The {@link CommunityRegistrator} module.
  */
 @Configuration
 @Component("community")
 @EnableTransactionManagement(proxyTargetClass = true)
 @Module(shortName = "c")
-public class Community implements Registrator {
+public class CommunityRegistrator implements Registrator {
   @Override
   public void addRegistrations(final ModuleContext moduleContext) {
     SwaggerRegistry swagger = moduleContext.get(SwaggerRegistry.class);

@@ -8,8 +8,6 @@ import com.k2.core.K2Environment;
 import com.k2.hibernate.Hibernate;
 import com.k2.swagger.Swagger;
 
-import com.archery.Community;
-
 /** The Community module Test {@link Application}.
  */
 @Configuration
@@ -20,7 +18,7 @@ public class TestApplication extends Application {
   private boolean initialized = false;
 
   TestApplication() {
-    super(new Hibernate(), new Swagger(), new Community());
+    super(new Hibernate(), new Swagger(), new CommunityRegistrator());
   }
 
   /** Runs the application, or return the already running one.

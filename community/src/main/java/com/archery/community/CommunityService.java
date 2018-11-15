@@ -23,7 +23,9 @@ public class CommunityService implements CommunityApiDelegate {
 
   @Override
   @Transactional
-  public ResponseEntity<Void> registerArcher(final ArcherDto newArcher) {
+  public ResponseEntity<Void> registerArcher(final ArcherDto archer) {
+    Archer newArcher = new Archer(archer.getName(), archer.getEmail(),
+        archer.getPass());
     archerService.createArcher(newArcher);
     return new ResponseEntity<>(HttpStatus.CREATED);
   }

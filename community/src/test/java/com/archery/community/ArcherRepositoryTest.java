@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.util.ReflectionTestUtils;
@@ -11,6 +12,15 @@ import org.springframework.test.util.ReflectionTestUtils;
 class ArcherRepositoryTest extends TestTransactional {
 
   private ArcherRepository repository;
+
+  @BeforeAll
+  static void before() {
+    prepare();
+  }
+
+  static void after() {
+    finish();
+  }
 
   @BeforeEach
   void setUp() {

@@ -10,8 +10,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.DetachedCriteria;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
@@ -23,7 +21,6 @@ public abstract class TestTransactional {
 
   private TransactionStatus txStatus;
 
-  @BeforeAll
   public static void prepare() {
     application = TestApplication.start();
     sessionFactory = application.getBean("hibernate.sessionFactory",
@@ -32,7 +29,6 @@ public abstract class TestTransactional {
         PlatformTransactionManager.class);
   }
 
-  @AfterAll
   public static void finish() {
     if (application != null) {
       application.stop();
@@ -54,7 +50,7 @@ public abstract class TestTransactional {
     txStatus = txManager.getTransaction(new DefaultTransactionDefinition());
   }
 
-  protected static void deleteEntityType(final Class<?> entityType) {
+  public static void deleteEntityType(final Class<?> entityType) {
     Session session = sessionFactory.openSession();
     Transaction transaction = session.getTransaction();
     transaction.begin();
@@ -69,7 +65,7 @@ public abstract class TestTransactional {
     session.disconnect();
   }
 
-  protected static void persist(final Object... entity) {
+  public static void persist(final Object... entity) {
     Session session = sessionFactory.openSession();
     Transaction transaction = session.getTransaction();
     transaction.begin();
@@ -80,7 +76,7 @@ public abstract class TestTransactional {
     session.disconnect();
   }
 
-  protected static <T> T retrieve(final Class<T> clazz, final Serializable id) {
+  public static <T> T retrieve(final Class<T> clazz, final Serializable id) {
     Session session = sessionFactory.openSession();
     Transaction transaction = session.getTransaction();
     transaction.begin();

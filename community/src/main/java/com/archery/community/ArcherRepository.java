@@ -10,7 +10,7 @@ import org.hibernate.criterion.Restrictions;
 
 /** The {@link Archer} persistence manager.
  */
-public class ArcherRepository {
+class ArcherRepository {
   private final SessionFactory sessionFactory;
 
   /** Creates a new {@link ArcherRepository} instance.
@@ -18,7 +18,7 @@ public class ArcherRepository {
    * @param theSessionFactory a {@link SessionFactory} implementation, cannot
    * be null.
    */
-  public ArcherRepository(final SessionFactory theSessionFactory) {
+  ArcherRepository(final SessionFactory theSessionFactory) {
     sessionFactory = theSessionFactory;
   }
 
@@ -26,7 +26,7 @@ public class ArcherRepository {
    *
    * @param archer an {@link Archer} instance, cannot be null.
    */
-  public void add(final Archer archer) {
+  void add(final Archer archer) {
     Validate.notNull(archer, "cannot save null archer");
 
     Session session = sessionFactory.getCurrentSession();
@@ -39,7 +39,7 @@ public class ArcherRepository {
    *
    * @return an {@link Archer} instance or null if none exists.
    */
-  public Archer get(final long id) {
+  Archer get(final long id) {
     Session session = sessionFactory.getCurrentSession();
 
     return session.get(Archer.class, id);
@@ -56,7 +56,7 @@ public class ArcherRepository {
    * if none was found.
    */
   @SuppressWarnings("unchecked")
-  public List<Archer> search(final String email) {
+  List<Archer> search(final String email) {
     Session session = sessionFactory.getCurrentSession();
 
     DetachedCriteria query = DetachedCriteria.forClass(Archer.class);

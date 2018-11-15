@@ -11,8 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import com.archery.community.api.model.ArcherDto;
+import com.archery.infranstructure.BusinessException;
 
-class CommunityServiceTest {
+class CommunityRegistratorServiceTest {
   private static Application application;
   private static CommunityService service;
 
@@ -21,6 +22,8 @@ class CommunityServiceTest {
     application = TestApplication.start();
     service = application.getBean("community.communityService",
         CommunityService.class);
+
+    TestTransactional.prepare();
   }
 
   @AfterAll
@@ -30,7 +33,7 @@ class CommunityServiceTest {
 
   @BeforeEach
   private void setUp() {
-    //clean up DB.
+    TestTransactional.deleteEntityType(Archer.class);
   }
 
   @Test
@@ -44,5 +47,20 @@ class CommunityServiceTest {
 
     assertEquals(response.getStatusCode(), HttpStatus.CREATED);
     assertEquals(response.getStatusCodeValue(), 201);
+  }
+
+  @Test
+  void registerArcher_duplicated() {
+    ArcherDto newArcher = new ArcherDto()
+        .email("archer@mail.com")
+        .name("archer")
+        .pass("secret");
+
+    ResponseEntity response = service.registerArcher(newArcher);
+    assertEquals(response.getStatusCode(), HttpStatus.CREATED);
+
+    assertThrows(BusinessException.class,
+        () -> service.registerArcher(newArcher),
+        "Cannot create Archer");
   }
 }
