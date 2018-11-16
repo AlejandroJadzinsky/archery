@@ -16,7 +16,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
  */
 @Entity
 @Table(name = "archers")
-public class Archer implements Comparable<Archer> {
+class Archer implements Comparable<Archer> {
   @Id @GeneratedValue
   private long id;
   /** A friendly name to be used in the app, never null nor empty. */
@@ -51,7 +51,7 @@ public class Archer implements Comparable<Archer> {
    *
    * @return a String, never null nor empty.
    */
-  public String logInfo() {
+  String logInfo() {
     return email;
   }
 

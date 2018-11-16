@@ -7,5 +7,5 @@ package com.archery.community;
  * organize tournaments and have {@link Archer achers} or other
  * {@link Organization organizations} as members.
  */
-public class Organization {
+class Organization {
 }

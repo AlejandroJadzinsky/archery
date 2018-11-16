@@ -17,7 +17,7 @@ public class CommunityService implements CommunityApiDelegate {
    *
    * @param theArcherService the {@link ArcherService} instance, cannot be null.
    */
-  public CommunityService(final ArcherService theArcherService) {
+  CommunityService(final ArcherService theArcherService) {
     archerService = theArcherService;
   }
 
