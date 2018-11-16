@@ -9,14 +9,14 @@ import org.apache.commons.lang3.Validate;
  * {@link ShootingPosition} is just the starting point of the Round trip.
  *
  */
-public class ShootingPosition {
+class ShootingPosition {
   private int position;
 
   /** Creates a nre {@link ShootingPosition} instance.
    *
    * @param thePosition the position order, always greater than zero.
    */
-  public ShootingPosition(final int thePosition) {
+  ShootingPosition(final int thePosition) {
     Validate.isTrue(thePosition > 0, "ShootinPosition order must be positive");
 
     position = thePosition;
@@ -26,7 +26,7 @@ public class ShootingPosition {
    *
    * @return a String, never null nor empty.
    */
-  public String logInfo() {
+  String logInfo() {
     return Integer.toString(position);
   }
 

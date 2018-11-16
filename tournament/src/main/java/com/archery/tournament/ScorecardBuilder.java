@@ -17,14 +17,14 @@ public class ScorecardBuilder {
   }
 
   /** Creates a new {@link Scorecard} instance for the given
-   * {@link ArcherRegistration}.
+   * {@link ShooterRegistration}.
    *
-   * @param archerRegistration an {@link ArcherRegistration} instance, cannot
-   * be null.
+   * @param shooterRegistration an {@link ShooterRegistration} instance,
+   * cannot be null.
    *
    * @return a new {@link Scorecard} instance, never null.
    */
-  public Scorecard forArcher(final ArcherRegistration archerRegistration) {
-    return new Scorecard(tournamentDefinition, archerRegistration);
+  public Scorecard forArcher(final ShooterRegistration shooterRegistration) {
+    return new Scorecard(tournamentDefinition, shooterRegistration);
   }
 }

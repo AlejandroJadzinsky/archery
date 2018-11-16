@@ -9,14 +9,14 @@ import com.archery.regulation.TargetZone;
 
 /** Register the performance of an Archer in a given round.
  */
-public class RoundScore extends ScoringBlock<RoundScore.EndScore> {
+class RoundScore extends ScoringBlock<RoundScore.EndScore> {
   private RoundDefinition definition;
 
   /** Creates a new {@link RoundScore} instance.
    *
    * @param theDefinition a {@link RoundDefinition} instance, cannot be null.
    */
-  public RoundScore(final RoundDefinition theDefinition) {
+  RoundScore(final RoundDefinition theDefinition) {
     super();
 
     definition = theDefinition;

@@ -4,7 +4,7 @@ import org.apache.commons.lang3.Validate;
 
 /** Represents the result of a shooting.
  */
-public class Score implements Comparable<Score> {
+class Score implements Comparable<Score> {
   private Integer points;
   private Integer bonuses;
   private Integer misses;
@@ -15,7 +15,7 @@ public class Score implements Comparable<Score> {
    * @param theBonuses the bonus scored, must positive or zero.
    * @param theMisses the misses scored, must positive or zero.
    */
-  public Score(final int thePoints, final int theBonuses, final int theMisses) {
+  Score(final int thePoints, final int theBonuses, final int theMisses) {
     Validate.isTrue(theBonuses >= 0, "Bonuses cannot be negative");
     Validate.isTrue(theMisses >= 0, "Misses cannot be negative");
 
@@ -35,7 +35,7 @@ public class Score implements Comparable<Score> {
    *
    * @return an int value.
    */
-  public int getPoints() {
+  int getPoints() {
     return points;
   }
 
@@ -43,7 +43,7 @@ public class Score implements Comparable<Score> {
    *
    * @return an int value, always positive or zero.
    */
-  public int getBonuses() {
+  int getBonuses() {
     return bonuses;
   }
 
@@ -51,7 +51,7 @@ public class Score implements Comparable<Score> {
    *
    * @return an int value, always positive or zero.
    */
-  public int getMisses() {
+  int getMisses() {
     return misses;
   }
 
@@ -59,7 +59,7 @@ public class Score implements Comparable<Score> {
    *
    * @param other a {@link Score} instance, cannot be null.
    */
-  public void add(final Score other) {
+  void add(final Score other) {
     Validate.notNull(other, "Adding score cannot be null");
 
     points += other.points;
@@ -90,7 +90,7 @@ public class Score implements Comparable<Score> {
   /** Just for debugging. Delete asap.
    * @return a String, never null nor empty.
    */
-  public String print() {
+  String print() {
     StringBuilder builder = new StringBuilder();
     builder.append("T: ").append(points)
         .append(" B: ").append(bonuses)

@@ -4,53 +4,51 @@ import java.util.Collections;
 import java.util.Set;
 import org.apache.commons.lang3.Validate;
 
-import com.archery.community.Archer;
-
-/** A group of {@link Archer archers} that shoot together and one of them is
+/** A group of {@link Shooter shooters} that shoot together and one of them is
  * designed as the scorer.
  */
-public class Patrol {
-  private Set<Archer> group;
+class Patrol {
+  private Set<Shooter> group;
 
   /** Creates a new {@link Patrol} instance.
    *
-   * @param archers the Set of {@link Archer} instances that compose this
+   * @param shooters the Set of {@link Shooter} instances that compose this
    * instance, cannot be null nor empty.
    */
-  public Patrol(final Set<Archer> archers) {
-    Validate.notEmpty(archers, "The archers set is null or empty.");
+  Patrol(final Set<Shooter> shooters) {
+    Validate.notEmpty(shooters, "The shooters set is null or empty.");
 
-    group = archers;
+    group = shooters;
   }
 
-  /** Removes an {@link Archer} from this instance.
+  /** Removes an {@link Shooter} from this instance.
    *
-   * @param archer the {@link Archer} instance to be removed.
+   * @param shooter the {@link Shooter} instance to be removed.
    *
-   * @return the same instance of the {@link Archer} removed, otherwise null.
+   * @return the same instance of the {@link Shooter} removed, otherwise null.
    */
-  public Archer removeArcher(final Archer archer) {
-    if (group.remove(archer)) {
-      return archer;
+  Shooter removeShooter(final Shooter shooter) {
+    if (group.remove(shooter)) {
+      return shooter;
     }
 
     return null;
   }
 
-  /** Adds an {@link Archer} to this instance.
+  /** Adds an {@link Shooter} to this instance.
    *
-   * @param archer an {@link Archer} instance, cannot be null.
+   * @param shooter an {@link Shooter} instance, cannot be null.
    */
-  public void addArcher(final Archer archer) {
-    Validate.notNull(archer, "Archer is null");
-    group.add(archer);
+  void addShooter(final Shooter shooter) {
+    Validate.notNull(shooter, "Shooter is null");
+    group.add(shooter);
   }
 
-  /** Exposes the group af {@link Archer} that compose this instance.
+  /** Exposes the group af {@link Shooter} that compose this instance.
    *
-   * @return a Set of {@link Archer} instances, never null nor empty.
+   * @return a Set of {@link Shooter} instances, never null nor empty.
    */
-  public Set<Archer> getGroup() {
+  Set<Shooter> getGroup() {
     return Collections.unmodifiableSet(group);
   }
 }

@@ -8,11 +8,9 @@ import java.util.Map;
 import java.util.Set;
 import org.apache.commons.lang3.Validate;
 
-import com.archery.community.Archer;
-
 /** Prepares a Round execution.
  */
-public class RoundSetUp {
+class RoundSetUp {
   private Map<ShootingPosition, Patrol> patrolsOrder;
 
   /** Creates a new {@link RoundSetUp} instance with a {@link Patrol} for each
@@ -21,10 +19,10 @@ public class RoundSetUp {
    *
    * @param positions the number of {@link ShootingPosition}s in this round,
    * must be greater than 0.
-   * @param archers the set of registered {@link Archer}s, cannot be null nor
+   * @param archers the set of registered {@link Shooter}s, cannot be null nor
    * empty.
    */
-  public RoundSetUp(final int positions, final Set<Archer> archers) {
+  RoundSetUp(final int positions, final Set<Shooter> archers) {
     Validate.isTrue(positions > 0, "No shooting positions");
 
     patrolsOrder = new HashMap<>(positions);
@@ -33,9 +31,9 @@ public class RoundSetUp {
     int remainder = archers.size() % positions;
 
     int shootingPosition = 1;
-    Iterator<Archer> iterator = archers.iterator();
+    Iterator<Shooter> iterator = archers.iterator();
     while (iterator.hasNext()) {
-      Set<Archer> group = new HashSet<>();
+      Set<Shooter> group = new HashSet<>();
       for (int i = 0; i < defaultSize; i++) {
         group.add(iterator.next());
       }
@@ -54,21 +52,21 @@ public class RoundSetUp {
    * @return a Map with configured {@link Patrol patrols} by
    * {@link ShootingPosition}. Never null.
    */
-  public Map<ShootingPosition, Patrol> getPatrolsOrder() {
+  Map<ShootingPosition, Patrol> getPatrolsOrder() {
     return Collections.unmodifiableMap(patrolsOrder);
   }
 
-  /** Moves an {@link Archer} from one {@link Patrol} to other indicating the
+  /** Moves an {@link Shooter} from one {@link Patrol} to other indicating the
    *  {@link Patrol patrol's} {@link ShootingPosition}.
    *
-   * @param archer the archer to move, cannot be null and must be in origin
+   * @param shooter the archer to move, cannot be null and must be in origin
    * {@link Patrol}.
    * @param from the origin {@link ShootingPosition}, cannot be null.
    * @param to the destination {@link ShootingPosition}, cannot be null.
    */
-  public void moveArcher(final Archer archer, final ShootingPosition from,
+  void moveShooter(final Shooter shooter, final ShootingPosition from,
       final ShootingPosition to) {
-    Validate.notNull(archer, "Cannot move a null archer");
+    Validate.notNull(shooter, "Cannot move a null shooter");
     Validate.notNull(from, "Origin patrol cannot be null");
     Validate.notNull(to, "Destination patrol cannot be null");
 
@@ -79,11 +77,11 @@ public class RoundSetUp {
     Validate.notNull(fromPatrol, "Destination ShootingPosition "
         + to.logInfo() + " does not exist");
 
-    if (fromPatrol.removeArcher(archer) == null) {
-      throw new RuntimeException(String.format("Archer %s is not in patrol %s",
-          archer.logInfo(), from.logInfo())
+    if (fromPatrol.removeShooter(shooter) == null) {
+      throw new RuntimeException(String.format("Shooter %s is not in patrol %s",
+          shooter, from.logInfo())
       );
     }
-    toPatrol.addArcher(archer);
+    toPatrol.addShooter(shooter);
   }
 }

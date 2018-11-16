@@ -13,7 +13,7 @@ import com.archery.regulation.ShootingStyle;
 
 /** The {@link TournamentScore}
  */
-public class TournamentScore {
+class TournamentScore {
 
   private List<Scorecard> scorecards;
 
@@ -21,11 +21,11 @@ public class TournamentScore {
    *
    * @param scorecardBuilder a {@link ScorecardBuilder} instance, cannot be
    * null.
-   * @param registrations a collection of {@link ArcherRegistration}
+   * @param registrations a collection of {@link ShooterRegistration}
    * instances, cannot be null nor empty.
    */
-  public TournamentScore(final ScorecardBuilder scorecardBuilder,
-      final Collection<ArcherRegistration> registrations) {
+  TournamentScore(final ScorecardBuilder scorecardBuilder,
+      final Collection<ShooterRegistration> registrations) {
     Validate.notNull(scorecardBuilder, "ScorecardBuilder is null");
     Validate.notEmpty(registrations, "Archer registrations cannot be null nor"
         + " empty");
@@ -38,7 +38,7 @@ public class TournamentScore {
    *
    * @return a list of {@link Scorecard} instances, never null.
    */
-  public List<Scorecard> getScorecards() {
+  List<Scorecard> getScorecards() {
     return Collections.unmodifiableList(scorecards);
   }
 
@@ -59,7 +59,7 @@ public class TournamentScore {
    *
    * @return a List of {@link Scorecard} instances, never null but can be empty.
    */
-  public List<Scorecard> listScorecards(final boolean sortByArcher,
+  List<Scorecard> listScorecards(final boolean sortByArcher,
       final boolean sortByScore, final ShootingStyle filterStyle,
       final ShootingDivision filterDivision) {
     List<Scorecard> result;

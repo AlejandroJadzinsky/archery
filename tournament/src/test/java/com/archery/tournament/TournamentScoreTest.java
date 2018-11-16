@@ -8,7 +8,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.util.ReflectionTestUtils;
 
-import com.archery.community.Archer;
 import com.archery.regulation.ShootingDivision;
 import com.archery.regulation.ShootingStyle;
 
@@ -27,8 +26,8 @@ class TournamentScoreTest {
         null);
 
     assertEquals(result.size(), 2);
-    assertEquals(getArcherFrom(result.get(0)).logInfo(), "archer1@mail.com");
-    assertEquals(getArcherFrom(result.get(1)).logInfo(), "archer2@mail.com");
+    assertEquals(getArcherFrom(result.get(0)).logInfo(), "archer1");
+    assertEquals(getArcherFrom(result.get(1)).logInfo(), "archer2");
   }
 
   @Test
@@ -51,7 +50,7 @@ class TournamentScoreTest {
   void sortScorecards_sortByScoreAndArcher() {
     List<Scorecard> scorecards = tournamentScore.getScorecards();
     boolean pos0isArcher1 = getArcherFrom(scorecards.get(0)).logInfo().equals(
-        "archer1@mail.com");
+        "archer1");
     if (pos0isArcher1) {
       scorecards.get(0).score(FIVE, FIVE, FIVE);
       scorecards.get(1).score(CROSS, FIVE, FIVE);
@@ -64,16 +63,16 @@ class TournamentScoreTest {
         null);
 
     assertEquals(result.size(), 2);
-    assertEquals(getArcherFrom(result.get(0)).logInfo(), "archer2@mail.com");
-    assertEquals(getArcherFrom(result.get(1)).logInfo(), "archer1@mail.com");
+    assertEquals(getArcherFrom(result.get(0)).logInfo(), "archer2");
+    assertEquals(getArcherFrom(result.get(1)).logInfo(), "archer1");
   }
 
-  private Archer getArcherFrom(final Scorecard scorecard) {
-    ArcherRegistration registration;
-    registration = (ArcherRegistration) ReflectionTestUtils.getField(scorecard,
-        "archerRegistration");
+  private Shooter getArcherFrom(final Scorecard scorecard) {
+    ShooterRegistration registration;
+    registration = (ShooterRegistration) ReflectionTestUtils.getField(scorecard,
+        "shooterRegistration");
 
-    return registration.getArcher();
+    return registration.getShooter();
   }
 
   @Test

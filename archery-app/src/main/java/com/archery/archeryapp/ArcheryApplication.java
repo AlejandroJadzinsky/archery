@@ -8,7 +8,7 @@ import com.k2.hibernate.Hibernate;
 
 import com.archery.community.CommunityRegistrator;
 import com.archery.Regulation;
-import com.archery.Tournament;
+import com.archery.tournament.TournamentRegistrator;
 
 /** The Archery application.
  *
@@ -22,7 +22,7 @@ public class ArcheryApplication extends Application {
    */
   public ArcheryApplication() {
     super(new Hibernate(), new CommunityRegistrator(), new Regulation(),
-        new Tournament(), new Swagger());
+        new TournamentRegistrator(), new Swagger());
   }
 }
 

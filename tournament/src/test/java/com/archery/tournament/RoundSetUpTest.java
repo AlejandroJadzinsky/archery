@@ -1,7 +1,7 @@
 package com.archery.tournament;
 
+import static com.archery.tournament.TournamentFactory.newShooter;
 import static org.junit.jupiter.api.Assertions.*;
-import static com.archery.community.CommunityFactory.*;
 
 import java.util.HashSet;
 import java.util.Map;
@@ -9,24 +9,22 @@ import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.archery.community.Archer;
-
 class RoundSetUpTest {
 
-  private Set<Archer> archers;
+  private Set<Shooter> archers;
 
   @BeforeEach
   void setUp() {
     archers = new HashSet<>();
-    archers.add(newArcher("a1"));
-    archers.add(newArcher("a2"));
-    archers.add(newArcher("a3"));
-    archers.add(newArcher("a4"));
-    archers.add(newArcher("a5"));
-    archers.add(newArcher("a6"));
-    archers.add(newArcher("a7"));
-    archers.add(newArcher("a8"));
-    archers.add(newArcher("a9"));
+    archers.add(newShooter("a1"));
+    archers.add(newShooter("a2"));
+    archers.add(newShooter("a3"));
+    archers.add(newShooter("a4"));
+    archers.add(newShooter("a5"));
+    archers.add(newShooter("a6"));
+    archers.add(newShooter("a7"));
+    archers.add(newShooter("a8"));
+    archers.add(newShooter("a9"));
   }
 
   @Test
@@ -61,7 +59,7 @@ class RoundSetUpTest {
     ShootingPosition from = new ShootingPosition(1);
     ShootingPosition to = new ShootingPosition(4);
 
-    Archer archer = newRound.getPatrolsOrder().get(from).getGroup().stream()
+    Shooter archer = newRound.getPatrolsOrder().get(from).getGroup().stream()
         .findFirst().get();
 
     assertEquals(patrols.get(from).getGroup().size(), 3);
@@ -69,7 +67,7 @@ class RoundSetUpTest {
     assertEquals(patrols.get(to).getGroup().size(), 2);
     assertFalse(patrols.get(to).getGroup().contains(archer));
 
-    newRound.moveArcher(archer, from, to);
+    newRound.moveShooter(archer, from, to);
 
     assertEquals(patrols.get(from).getGroup().size(), 2);
     assertFalse(patrols.get(from).getGroup().contains(archer));

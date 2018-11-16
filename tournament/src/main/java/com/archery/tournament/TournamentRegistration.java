@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 import org.apache.commons.lang3.Validate;
 
-import com.archery.community.Archer;
 import com.archery.regulation.ShootingDivision;
 import com.archery.regulation.ShootingStyle;
 
@@ -19,9 +18,9 @@ import com.archery.regulation.ShootingStyle;
  *   - division where the archer competes.
  *   - style where the archer competes.
  */
-public class TournamentRegistration {
+class TournamentRegistration {
   private int quota;
-  private Map<Archer, ArcherRegistration> participants;
+  private Map<Shooter, ShooterRegistration> participants;
   //TODO registration may be closed just by the passing of time, may be with
   // a dueDate
   private boolean open;
@@ -30,7 +29,7 @@ public class TournamentRegistration {
    *
    * @param theQuota the number of participants allowed, must be greater than 0.
    */
-  public TournamentRegistration(final int theQuota) {
+  TournamentRegistration(final int theQuota) {
     Validate.isTrue(theQuota > 1,
         "The Tournament Archers limit must be grater than one");
 
@@ -39,7 +38,7 @@ public class TournamentRegistration {
     open = true;
   }
 
-  /** Register an {@link Archer}.
+  /** Register a {@link Shooter}.
    *
    * @param archer the archer to register, cannot be null.
    * @param style the style in which the archer wants to compete, cannot be
@@ -47,28 +46,28 @@ public class TournamentRegistration {
    * @param division the division in which the archer wants to compete,
    * cannot be null.
    */
-  public void registerArcher(final Archer archer, final ShootingStyle style,
+  void registerArcher(final Shooter archer, final ShootingStyle style,
       final ShootingDivision division) {
     validateRegistration();
 
-    participants.put(archer, new ArcherRegistration(archer, style, division));
+    participants.put(archer, new ShooterRegistration(archer, style, division));
   }
 
-  /** Checks if the given {@link Archer} is already registered.
+  /** Checks if the given {@link Shooter} is already registered.
    *
-   * @param archer an {@link Archer} instance, cannot be null.
+   * @param archer an {@link Shooter} instance, cannot be null.
    *
-   * @return true if the given {@link Archer} is registered, otherwise false.
+   * @return true if the given {@link Shooter} is registered, otherwise false.
    */
-  public boolean isArcherRegistered(final Archer archer) {
+  boolean isArcherRegistered(final Shooter archer) {
     return participants.get(archer) != null;
   }
 
   /** Unregister an archer.
    *
-   * @param archer an {@link Archer} instance, never null.
+   * @param archer an {@link Shooter} instance, never null.
    */
-  public void unregisterArcher(final Archer archer) {
+  void unregisterArcher(final Shooter archer) {
     validateRegistration();
 
     participants.remove(archer);
@@ -76,19 +75,19 @@ public class TournamentRegistration {
 
   /** Search for an archer registration in this instance.
    *
-   * @param archer an {@link Archer} instance.
+   * @param archer an {@link Shooter} instance.
    *
-   * @return an {@link ArcherRegistration} instance or null if none is fund.
+   * @return an {@link ShooterRegistration} instance or null if none is fund.
    */
-  public ArcherRegistration getRegistration(final Archer archer) {
+  ShooterRegistration getRegistration(final Shooter archer) {
     return participants.get(archer);
   }
 
   /** Exposes the registered archers.
    *
-   * @return a collection of {@link ArcherRegistration} instances, never null.
+   * @return a collection of {@link ShooterRegistration} instances, never null.
    */
-  public Collection<ArcherRegistration> getRegistrations() {
+  Collection<ShooterRegistration> getRegistrations() {
     return Collections.unmodifiableCollection(participants.values());
   }
 
@@ -96,14 +95,14 @@ public class TournamentRegistration {
    *
    * @return true if the registration is still open, otherwise false.
    */
-  public boolean isRegistrationOpen() {
+  boolean isRegistrationOpen() {
     return open;
   }
 
   /** Close this instance, after this method invocation registration is no
    * longer possible.
    */
-  public void closeRegistration() {
+  void closeRegistration() {
     open = false;
   }
 
@@ -124,7 +123,7 @@ public class TournamentRegistration {
    *
    * @return an int, always positive or zero.
    */
-  public int getRemainingPositions() {
+  int getRemainingPositions() {
     return quota - participants.size();
   }
 }

@@ -1,13 +1,11 @@
 package com.archery.tournament;
 
-import static com.archery.community.CommunityFactory.newArcher;
 import static com.archery.regulation.TargetZone.*;
 import static com.archery.regulation.TargetZone.CROSS;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import com.archery.community.Archer;
 import com.archery.regulation.EndDefinition;
 import com.archery.regulation.RoundDefinition;
 import com.archery.regulation.ShootingDivision;
@@ -16,12 +14,16 @@ import com.archery.regulation.Target;
 import com.archery.regulation.TargetZone;
 import com.archery.regulation.TournamentDefinition;
 
-public class TournamentFactory {
+class TournamentFactory {
 
-  private static Archer archer1 = newArcher("archer1");
-  private static Archer archer2 = newArcher("archer2");
+  private static Shooter archer1 = newShooter("archer1");
+  private static Shooter archer2 = newShooter("archer2");
 
-  public static TournamentDefinition testTournamentDefinition() {
+  static Shooter newShooter(final String name) {
+    return new Shooter(name);
+  }
+
+  static TournamentDefinition testTournamentDefinition() {
     Map<TargetZone, Integer> targetZones = new HashMap<>();
     targetZones.put(MISS, 0);
     targetZones.put(ONE, 1);
@@ -44,15 +46,15 @@ public class TournamentFactory {
     return new TournamentDefinition(roundDefinitions);
   }
 
-  public static ArcherRegistration archer1BlAdult() {
+  static ShooterRegistration archer1BlAdult() {
     return testTournamentRegistration().getRegistration(archer1);
   }
 
-  public static ArcherRegistration archer2LbAdult() {
+  static ShooterRegistration archer2LbAdult() {
     return testTournamentRegistration().getRegistration(archer2);
   }
 
-  public static TournamentRegistration testTournamentRegistration() {
+  static TournamentRegistration testTournamentRegistration() {
     TournamentRegistration registration = new TournamentRegistration(4);
     registration.registerArcher(archer1, ShootingStyle.BL,
         ShootingDivision.ADULT);
@@ -62,15 +64,15 @@ public class TournamentFactory {
     return registration;
   }
 
-  public static ScorecardBuilder testScorecardBuilder() {
+  static ScorecardBuilder testScorecardBuilder() {
     return new ScorecardBuilder(testTournamentDefinition());
   }
 
-  public static Scorecard archer1ScorecardEmpty() {
+  static Scorecard archer1ScorecardEmpty() {
     return testScorecardBuilder().forArcher(archer1BlAdult());
   }
 
-  public static TournamentScore testTournamentScore() {
+  static TournamentScore testTournamentScore() {
     return new TournamentScore(testScorecardBuilder(),
         testTournamentRegistration().getRegistrations());
   }

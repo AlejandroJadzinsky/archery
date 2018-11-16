@@ -4,29 +4,21 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static com.archery.community.CommunityFactory.newArcher;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import static com.archery.tournament.TournamentFactory.newShooter;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.util.ReflectionTestUtils;
 
-import com.archery.community.Archer;
-import com.archery.community.CommunityFactory;
-import com.archery.community.Seat;
 import com.archery.regulation.ShootingDivision;
 import com.archery.regulation.ShootingStyle;
 
 class TournamentRegistrationTest {
-
-  @Mock
-  private Seat seat;
 
   private TournamentRegistration registrar;
 
@@ -34,8 +26,6 @@ class TournamentRegistrationTest {
   void setUp() {
     MockitoAnnotations.initMocks(this);
 
-    LocalDate date = LocalDate.now().plusMonths(1);
-    LocalTime time = LocalTime.of(9, 30);
     registrar = new TournamentRegistration(2);
   }
 
@@ -47,25 +37,25 @@ class TournamentRegistrationTest {
       assertEquals(2, registrar.getRemainingPositions(),
           "Wrong open positions");
 
-      Archer archer = newArcher("archer1");
-      registrar.registerArcher(archer, ShootingStyle.BL,
+      Shooter shooter = newShooter("archer1");
+      registrar.registerArcher(shooter, ShootingStyle.BL,
           ShootingDivision.ADULT);
 
       assertEquals(1, registrar.getRemainingPositions(),
           "Wrong open positions");
-      assertTrue(registrar.isArcherRegistered(archer),
-          "Registered archer is missing.");
+      assertTrue(registrar.isArcherRegistered(shooter),
+          "Registered shooter is missing.");
     }
 
     @Test
     void registerArcher_noMoreRoom() {
-      registrar.registerArcher(newArcher("archer1"), ShootingStyle.BL,
+      registrar.registerArcher(newShooter("archer1"), ShootingStyle.BL,
           ShootingDivision.ADULT);
-      registrar.registerArcher(newArcher("archer2"), ShootingStyle.BL,
+      registrar.registerArcher(newShooter("archer2"), ShootingStyle.BL,
           ShootingDivision.ADULT);
 
       assertThrows(Exception.class,
-          () -> registrar.registerArcher(CommunityFactory.newArcher("archer3"),
+          () -> registrar.registerArcher(newShooter("archer3"),
               ShootingStyle.BL, ShootingDivision.ADULT),
           "Exception expected with no room");
 
@@ -77,17 +67,17 @@ class TournamentRegistrationTest {
     void registerArcher_alreadyRegistered() {
       assertEquals(2, registrar.getRemainingPositions(),
           "Wrong open positions");
-      Archer archer = newArcher("archer1");
-      registrar.registerArcher(archer, ShootingStyle.BL,
+      Shooter shooter = newShooter("archer1");
+      registrar.registerArcher(shooter, ShootingStyle.BL,
           ShootingDivision.ADULT);
-      registrar.registerArcher(archer, ShootingStyle.BU, ShootingDivision.CUB);
+      registrar.registerArcher(shooter, ShootingStyle.BU, ShootingDivision.CUB);
 
       assertEquals(1, registrar.getRemainingPositions(),
           "Wrong open positions");
-      assertTrue(registrar.isArcherRegistered(archer),
-          "Registered archer is missing.");
+      assertTrue(registrar.isArcherRegistered(shooter),
+          "Registered shooter is missing.");
 
-      ArcherRegistration registered = registrar.getRegistration(archer);
+      ShooterRegistration registered = registrar.getRegistration(shooter);
       ShootingStyle style = (ShootingStyle) ReflectionTestUtils.getField(
           registered, "style");
       ShootingDivision division = (ShootingDivision) ReflectionTestUtils
@@ -99,20 +89,20 @@ class TournamentRegistrationTest {
 
     @Test
     void unregisterArcher() {
-      Archer archer = newArcher("archer1");
-      registrar.registerArcher(archer, ShootingStyle.BL,
+      Shooter shooter = newShooter("archer1");
+      registrar.registerArcher(shooter, ShootingStyle.BL,
           ShootingDivision.ADULT);
 
       assertEquals(1, registrar.getRemainingPositions(),
           "Wrong open positions");
-      assertTrue(registrar.isArcherRegistered(archer),
-          "Registered archer is missing.");
+      assertTrue(registrar.isArcherRegistered(shooter),
+          "Registered shooter is missing.");
 
-      registrar.unregisterArcher(archer);
+      registrar.unregisterArcher(shooter);
       assertEquals(2, registrar.getRemainingPositions(),
           "Wrong open positions");
-      assertFalse(registrar.isArcherRegistered(archer),
-          "Unregistered archer is still present.");
+      assertFalse(registrar.isArcherRegistered(shooter),
+          "Unregistered shooter is still present.");
     }
 
     @Test
@@ -120,7 +110,7 @@ class TournamentRegistrationTest {
       TournamentRegistration closedRegistration = new TournamentRegistration(2);
       closedRegistration.closeRegistration();
       Executable register = () -> closedRegistration.registerArcher(
-          newArcher("archer1"), ShootingStyle.BL, ShootingDivision.ADULT);
+          newShooter("archer1"), ShootingStyle.BL, ShootingDivision.ADULT);
       assertThrows(Exception.class, register,
           "Exception expected when registration is closed");
     }

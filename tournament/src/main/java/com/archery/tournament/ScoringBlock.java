@@ -11,7 +11,7 @@ import com.archery.regulation.TargetZone;
  *
  * @param <T> anything that extends Scoring.
  */
-public abstract class ScoringBlock<T extends Scoring> implements Scoring {
+abstract class ScoringBlock<T extends Scoring> implements Scoring {
   private List<T> scorings;
 
   /** Default constructor.
@@ -59,5 +59,5 @@ public abstract class ScoringBlock<T extends Scoring> implements Scoring {
    *
    * @return true if this instance is completed, otherwise false.
    */
-  public abstract boolean isCompleted();
+  abstract boolean isCompleted();
 }

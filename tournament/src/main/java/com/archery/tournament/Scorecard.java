@@ -5,33 +5,32 @@ import java.util.Comparator;
 import java.util.List;
 import org.apache.commons.lang3.Validate;
 
-import com.archery.community.Archer;
 import com.archery.regulation.RoundDefinition;
 import com.archery.regulation.ShootingDivision;
 import com.archery.regulation.ShootingStyle;
 import com.archery.regulation.TargetZone;
 import com.archery.regulation.TournamentDefinition;
 
-/** Register the performance of a {@link ArcherRegistration registered archer}
+/** Register the performance of a {@link ShooterRegistration registered archer}
  * in a tournament.
  */
-public class Scorecard extends ScoringBlock<RoundScore> {
-  private ArcherRegistration archerRegistration;
+class Scorecard extends ScoringBlock<RoundScore> {
+  private ShooterRegistration shooterRegistration;
 
   /** Creates a new {@link Scorecard} instance.
    *
    * @param theDefinition a {@link TournamentDefinition} instance, cannot be
    * null.
-   * @param theRegistration a {@link ArcherRegistration} instance, cannot be
+   * @param theRegistration a {@link ShooterRegistration} instance, cannot be
    * null.
    */
-  public Scorecard(final TournamentDefinition theDefinition,
-      final ArcherRegistration theRegistration) {
+  Scorecard(final TournamentDefinition theDefinition,
+      final ShooterRegistration theRegistration) {
     super();
 
     Validate.notNull(theDefinition, "The TournamentDefinition cannot be null");
-    Validate.notNull(theRegistration, "ArcherRegistration cannot be null");
-    archerRegistration = theRegistration;
+    Validate.notNull(theRegistration, "ShooterRegistration cannot be null");
+    shooterRegistration = theRegistration;
     initializeRounds(theDefinition.getRounds());
   }
 
@@ -77,8 +76,8 @@ public class Scorecard extends ScoringBlock<RoundScore> {
    * @return true if this instance style is equal to the parameter,
    * otherwise false.
    */
-  public boolean is(final ShootingStyle style) {
-    return archerRegistration.isStyle(style);
+  boolean is(final ShootingStyle style) {
+    return shooterRegistration.isStyle(style);
   }
 
   /** Checks if this instance belongs to an archer registered in the given
@@ -89,8 +88,8 @@ public class Scorecard extends ScoringBlock<RoundScore> {
    * @return true if this instance division is equal to the parameter,
    * otherwise false.
    */
-  public boolean is(final ShootingDivision division) {
-    return archerRegistration.isDivision(division);
+  boolean is(final ShootingDivision division) {
+    return shooterRegistration.isDivision(division);
   }
 
   /** Creates a Comparator instance based on the given flags.
@@ -99,7 +98,7 @@ public class Scorecard extends ScoringBlock<RoundScore> {
    * When both are false score is used by default.
    *
    * @param archer when true objects are compared by
-   * {@link Archer#compareTo(Archer)} comparison.
+   * {@link Shooter#compareTo(Shooter)} comparison.
    * @param score when true objects are compared by
    * {@link Score#compareTo(Score)} comparison
    *
@@ -111,9 +110,9 @@ public class Scorecard extends ScoringBlock<RoundScore> {
       //score comparison is in reverse order, we want the higher scores first.
       int scoreComparision = o2.getScore().compareTo(o1.getScore());
 
-      Archer o1Archer = o1.archerRegistration.getArcher();
-      Archer o2Archer = o2.archerRegistration.getArcher();
-      int archerComparision = o1Archer.compareTo(o2Archer);
+      Shooter o1Shooter = o1.shooterRegistration.getShooter();
+      Shooter o2Shooter = o2.shooterRegistration.getShooter();
+      int archerComparision = o1Shooter.compareTo(o2Shooter);
 
       if (archer && score) {
         if (scoreComparision == 0) {
@@ -134,7 +133,7 @@ public class Scorecard extends ScoringBlock<RoundScore> {
    */
   String print() {
     StringBuilder builder = new StringBuilder();
-    builder.append(archerRegistration.print()).append("\n");
+    builder.append(shooterRegistration.print()).append("\n");
     List<RoundScore> rounds = getScorings();
     for (int i = 0; i < rounds.size(); i++)  {
       RoundScore round = rounds.get(i);

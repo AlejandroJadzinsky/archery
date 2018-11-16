@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.archery.Regulation;
-import com.archery.Tournament;
+import com.archery.tournament.TournamentRegistrator;
 import com.archery.community.CommunityRegistrator;
 
 /** App launcher for local test usage.
@@ -19,7 +19,7 @@ public class LauncherTestApplication extends Application {
 
   public LauncherTestApplication() {
     super(new Hibernate(), new CommunityRegistrator(), new Regulation(),
-        new Tournament(), new Swagger());
+        new TournamentRegistrator(), new Swagger());
   }
 
   /** Launches the sample application.
