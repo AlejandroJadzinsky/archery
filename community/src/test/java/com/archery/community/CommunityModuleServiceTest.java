@@ -13,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 import com.archery.community.api.model.ArcherDto;
 import com.archery.infranstructure.BusinessException;
 
-class CommunityRegistratorServiceTest {
+class CommunityModuleServiceTest {
   private static Application application;
   private static CommunityService service;
 

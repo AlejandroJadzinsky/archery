@@ -18,7 +18,7 @@ public class TestApplication extends Application {
   private boolean initialized = false;
 
   TestApplication() {
-    super(new Hibernate(), new Swagger(), new CommunityRegistrator());
+    super(new Hibernate(), new Swagger(), new CommunityModule());
   }
 
   /** Runs the application, or return the already running one.

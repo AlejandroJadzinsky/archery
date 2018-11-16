@@ -8,9 +8,9 @@ import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.archery.Regulation;
-import com.archery.tournament.TournamentRegistrator;
-import com.archery.community.CommunityRegistrator;
+import com.archery.regulation.RegulationModule;
+import com.archery.tournament.TournamentModule;
+import com.archery.community.CommunityModule;
 
 /** App launcher for local test usage.
  */
@@ -18,8 +18,8 @@ import com.archery.community.CommunityRegistrator;
 public class LauncherTestApplication extends Application {
 
   public LauncherTestApplication() {
-    super(new Hibernate(), new CommunityRegistrator(), new Regulation(),
-        new TournamentRegistrator(), new Swagger());
+    super(new Hibernate(), new CommunityModule(), new RegulationModule(),
+        new TournamentModule(), new Swagger());
   }
 
   /** Launches the sample application.

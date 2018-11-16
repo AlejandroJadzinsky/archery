@@ -17,13 +17,13 @@ import com.archery.community.api.CommunityApiController;
 import com.archery.community.api.CommunityApiDelegate;
 import com.archery.infranstructure.ErrorHandler;
 
-/** The {@link CommunityRegistrator} module.
+/** The {@link CommunityModule} module.
  */
 @Configuration
 @Component("community")
 @EnableTransactionManagement(proxyTargetClass = true)
 @Module(shortName = "c")
-public class CommunityRegistrator implements Registrator {
+public class CommunityModule implements Registrator {
   @Override
   public void addRegistrations(final ModuleContext moduleContext) {
     SwaggerRegistry swagger = moduleContext.get(SwaggerRegistry.class);
