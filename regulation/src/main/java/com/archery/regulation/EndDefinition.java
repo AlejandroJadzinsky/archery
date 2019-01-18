@@ -3,7 +3,7 @@ package com.archery.regulation;
 import org.apache.commons.lang3.Validate;
 
 /** Tournaments have one or more Rounds, Each Round is divided into Ends. An
- * archer shoots N arrows per end.
+ * archer shoots N arrows per End.
  */
 public class EndDefinition {
   /** The number of arrows shot in each end, greater than 0. */

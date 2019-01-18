@@ -43,7 +43,7 @@ class TournamentFactory {
     roundDefinitions.put(1, roundDefinition1);
     roundDefinitions.put(2, roundDefinition2);
 
-    return new TournamentDefinition(roundDefinitions);
+    return new TournamentDefinition("test", roundDefinitions);
   }
 
   static ShooterRegistration archer1BlAdult() {

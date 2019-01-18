@@ -12,7 +12,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 /** A person that practice archery.
  *
  * An {@link Archer} may belong to an {@link Organization}, participate in
- * tournaments
+ * Tournaments
  */
 @Entity
 @Table(name = "archers")

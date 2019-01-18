@@ -8,9 +8,7 @@ import org.apache.commons.lang3.Validate;
  */
 public class Target {
 
-  /** The score for each zone.
-   * TODO we count zones form outside to inside...
-   * */
+  /** The score for each zone. */
   private Map<TargetZone, Integer> scoreZones;
 
   /** Creates a new {@link Target} instance.

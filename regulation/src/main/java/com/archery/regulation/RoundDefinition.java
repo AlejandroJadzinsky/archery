@@ -4,7 +4,9 @@ import org.apache.commons.lang3.Validate;
 
 /** Tournaments have one or more Rounds. A round is defined by its distance
  * to the target (when known) and a target used for this distance.
- * TODO (A.J 2018-09-22) add distance to the model
+ * TODO (A.J 2018-09-22) add distance to the model, distance should be a range
+ * defined between a MIN and a MAX length and could be typed as Fixed (MIN ==
+ * MAX), Variable-Known or Variable-Unknown
  *
  * Rounds are divided into a number of {@link EndDefinition Ends}.
  */

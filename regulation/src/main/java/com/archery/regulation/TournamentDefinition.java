@@ -7,6 +7,8 @@ import java.util.Map;
 import org.apache.commons.lang3.Validate;
 
 /** A {@link TournamentDefinition} defines the structure of a tournament.
+ *
+ * TODO (A.J. 2018-11-18) add Stage concept.
  */
 public class TournamentDefinition {
   /** The name that identify the contest. */
@@ -17,13 +19,17 @@ public class TournamentDefinition {
 
   /** Creates a new {@link TournamentDefinition} instance.
    *
+   * @param theName the Tournament's name, cannot be null nor empty.
    * @param theRounds the map or ordered {@link RoundDefinition} instances,
    * cannot be null nor empty.
    */
-  public TournamentDefinition(final Map<Integer, RoundDefinition> theRounds) {
+  public TournamentDefinition(final String theName,
+      final Map<Integer, RoundDefinition> theRounds) {
+    Validate.notEmpty(theName, "The Tournament name cannot be null nor empty");
     Validate.notEmpty(theRounds, "The RoundDefinitions cannot be null nor "
         + "empty");
 
+    name = theName;
     rounds = theRounds;
   }
 
